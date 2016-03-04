@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true"
+        android:drawable="@drawable/tv_item_bar_default_am"
+        />
+    <item android:state_enabled="false"
+        android:drawable="@drawable/tv_item_bar_disabled_am"
+        />
+</selector>

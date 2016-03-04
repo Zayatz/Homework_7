@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.zayatz.homework_7.MainActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/itemStyle">
+        <TextView
+            android:id="@+id/itemBar1_AM"
+            style="@style/itemBarStyle"
+            android:text="@string/item_1_bar"
+            android:layout_toStartOf="@+id/itemButton1_AM"/>
+        <Button
+            android:id="@+id/itemButton1_AM"
+            style="@style/itemBtnStyle"
+            android:enabled="true"
+            android:layout_alignParentEnd="true"/>
+        <TextView
+            android:id="@+id/itemText1"
+            style="@style/itemTextStyle"
+            android:text="@string/item_1_text"
+            android:layout_below="@+id/itemBar1_AM" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/itemStyle">
+        <TextView
+            android:id="@+id/itemBar2_AM"
+            style="@style/itemBarStyle"
+            android:enabled="false"
+            android:text="@string/item_2_bar"
+            android:layout_toStartOf="@+id/itemButton2_AM"/>
+        <Button
+            android:id="@+id/itemButton2_AM"
+            style="@style/itemBtnStyle"
+            android:enabled="false"
+            android:layout_alignParentEnd="true"/>
+        <TextView
+            android:id="@+id/itemText2_AM"
+            style="@style/itemTextStyle"
+            android:enabled="false"
+            android:text="@string/item_2_text"
+            android:layout_below="@+id/itemBar2_AM" />
+    </RelativeLayout>
+
+    <RelativeLayout
+    style="@style/itemStyle">
+        <TextView
+            android:id="@+id/itemBar3_AM"
+            style="@style/itemBarStyle"
+            android:text="@string/item_3_bar"
+            android:layout_toStartOf="@+id/itemButton3_AM"/>
+        <Button
+            android:id="@+id/itemButton3_AM"
+            style="@style/itemBtnStyle"
+            android:layout_alignParentEnd="true"/>
+        <TextView
+            android:id="@+id/itemText3"
+            style="@style/itemTextStyle"
+            android:text="@string/item_3_text"
+            android:layout_below="@+id/itemBar3_AM" />
+    </RelativeLayout>
+
+
+</LinearLayout>
