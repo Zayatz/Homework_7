@@ -1,7 +1,7 @@
 package com.zayatz.homework_7;
 
-import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableStringBuilder;
@@ -12,28 +12,72 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements ActionBar.OnMenuVisibilityListener {
+public class MainActivity extends AppCompatActivity {
 
     private TextView tvItemBar1, tvItemBar2, tvItemBar3, tvItemText1, tvItemText2, tvItemText3;
     private Button btnItemMenu1, btnItemMenu2, btnItemMenu3;
-
+    private SharedPreferences mSPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar bar = getActionBar();
-        bar.addOnMenuVisibilityListener(this);
         findViews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.ab_menu_am, menu);
-        Log.d("TAG", "onCreate");
+
+        MenuItem item1 = menu.findItem(R.id.ab_item1);
+        MenuItem item2 = menu.findItem(R.id.ab_item2);
+        MenuItem item3 = menu.findItem(R.id.ab_item3);
+
+        loadActionBarState(item1,item2, item3);
+
+        itemSetEnabled(1, item1.isChecked());
+        itemSetEnabled(2, item2.isChecked());
+        itemSetEnabled(3, item3.isChecked());
+
+        setCheckIcon(item1);
+        setCheckIcon(item2);
+        setCheckIcon(item3);
         return true;
+    }
+
+    @Override
+    public void onPanelClosed(int featureId, Menu menu) {
+        Log.d("TAG", "onClosePanel");
+        MenuItem item1 = menu.findItem(R.id.ab_item1);
+        MenuItem item2 = menu.findItem(R.id.ab_item2);
+        MenuItem item3 = menu.findItem(R.id.ab_item3);
+
+        if (item1.getIntent() != null) {
+            item2.setChecked(false);
+            item3.setChecked(false);
+        } else if (item2.getIntent() != null) {
+            item1.setChecked(false);
+            item3.setChecked(false);
+        } else if (item3.getIntent() != null) {
+            item1.setChecked(false);
+            item2.setChecked(false);
+        }
+
+        saveActionBarState(item1,item2, item3);
+
+        item1.setIntent(null);
+        item2.setIntent(null);
+        item3.setIntent(null);
+
+        itemSetEnabled(1, item1.isChecked());
+        itemSetEnabled(2, item2.isChecked());
+        itemSetEnabled(3, item3.isChecked());
+
+        setCheckIcon(item1);
+        setCheckIcon(item2);
+        setCheckIcon(item3);
+        super.onPanelClosed(featureId, menu);
     }
 
     @Override
@@ -42,16 +86,19 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnMenuV
             case R.id.ab_item1:
                 item.setChecked(true);
                 sendStateByIntent(item);
+
                 return true;
 
             case R.id.ab_item2:
                 item.setChecked(true);
                 sendStateByIntent(item);
+
                 return true;
 
             case R.id.ab_item3:
                 item.setChecked(true);
                 sendStateByIntent(item);
+
                 return true;
         }
 
@@ -102,33 +149,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnMenuV
         }
     }
 
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.d("TAG", "onPrepare");
-
-        MenuItem item1 = menu.findItem(R.id.ab_item1);
-        MenuItem item2 = menu.findItem(R.id.ab_item2);
-        MenuItem item3 = menu.findItem(R.id.ab_item3);
-
-        if (item1.getIntent() != null) {
-            item2.setChecked(false);
-            item3.setChecked(false);
-        } else if (item2.getIntent() != null) {
-            item1.setChecked(false);
-            item3.setChecked(false);
-        } else if (item3.getIntent() != null) {
-            item1.setChecked(false);
-            item2.setChecked(false);
-        }
-
-        item1.setIntent(null);
-        item2.setIntent(null);
-        item3.setIntent(null);
-
-        setCheckIcon(item1);
-        setCheckIcon(item2);
-        setCheckIcon(item3);
-        return true;
-    }
 
     private void setCheckIcon (MenuItem item) {
 
@@ -152,9 +172,35 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnMenuV
         else return "* " + title;
     }
 
-    @Override
-    public void onMenuVisibilityChanged(boolean isVisible) {
-        if (isVisible) Toast.makeText(this, "visible", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(this, "unvisible", Toast.LENGTH_SHORT).show();
+    private void saveActionBarState (MenuItem item1, MenuItem item2, MenuItem item3) {
+
+        mSPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = mSPref.edit();
+        ed.putBoolean(Constant.SPREF_ITEM_1_CHECKED, item1.isChecked());
+        ed.putBoolean(Constant.SPREF_ITEM_2_CHECKED, item2.isChecked());
+        ed.putBoolean(Constant.SPREF_ITEM_3_CHECKED, item3.isChecked());
+        ed.apply();
+    }
+
+    private void loadActionBarState (MenuItem item1, MenuItem item2, MenuItem item3) {
+        mSPref = getPreferences(MODE_PRIVATE);
+
+        boolean item1state = mSPref.getBoolean(Constant.SPREF_ITEM_1_CHECKED, true);
+        boolean item2state =  mSPref.getBoolean(Constant.SPREF_ITEM_2_CHECKED, false);
+        boolean item3state = mSPref.getBoolean(Constant.SPREF_ITEM_3_CHECKED, false);
+
+        item1.setChecked(item1state);
+        item2.setChecked(item2state);
+        item3.setChecked(item3state);
+    }
+
+    private void defaultActionBarState () {
+
+        mSPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = mSPref.edit();
+        ed.putBoolean(Constant.SPREF_ITEM_1_CHECKED, true);
+        ed.putBoolean(Constant.SPREF_ITEM_2_CHECKED, false);
+        ed.putBoolean(Constant.SPREF_ITEM_3_CHECKED, false);
+        ed.apply();
     }
 }
