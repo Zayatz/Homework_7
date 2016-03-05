@@ -16,10 +16,9 @@
         <Button
             android:id="@+id/itemButton1_AM"
             style="@style/itemBtnStyle"
-            android:enabled="true"
             android:layout_alignParentEnd="true"/>
         <TextView
-            android:id="@+id/itemText1"
+            android:id="@+id/itemText1_AM"
             style="@style/itemTextStyle"
             android:text="@string/item_1_text"
             android:layout_below="@+id/itemBar1_AM" />
@@ -30,18 +29,15 @@
         <TextView
             android:id="@+id/itemBar2_AM"
             style="@style/itemBarStyle"
-            android:enabled="false"
             android:text="@string/item_2_bar"
             android:layout_toStartOf="@+id/itemButton2_AM"/>
         <Button
             android:id="@+id/itemButton2_AM"
             style="@style/itemBtnStyle"
-            android:enabled="false"
             android:layout_alignParentEnd="true"/>
         <TextView
             android:id="@+id/itemText2_AM"
             style="@style/itemTextStyle"
-            android:enabled="false"
             android:text="@string/item_2_text"
             android:layout_below="@+id/itemBar2_AM" />
     </RelativeLayout>
@@ -58,7 +54,7 @@
             style="@style/itemBtnStyle"
             android:layout_alignParentEnd="true"/>
         <TextView
-            android:id="@+id/itemText3"
+            android:id="@+id/itemText3_AM"
             style="@style/itemTextStyle"
             android:text="@string/item_3_text"
             android:layout_below="@+id/itemBar3_AM" />
