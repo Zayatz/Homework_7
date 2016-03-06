@@ -8,7 +8,6 @@ import android.support.v7.widget.PopupMenu;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,12 +44,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MenuItem item2 = menu.findItem(R.id.ab_item2);
         MenuItem item3 = menu.findItem(R.id.ab_item3);
 
+        /*load states of menu items from shared preferences*/
         loadActionBarState(item1, item2, item3);
 
+        /*check state of menu items and set enabled items on screen depending on menu items state*/
         itemSetEnabled(1, item1.isChecked());
         itemSetEnabled(2, item2.isChecked());
         itemSetEnabled(3, item3.isChecked());
 
+        /*set icon to menu item depending on it's state*/
         setCheckIcon(item1);
         setCheckIcon(item2);
         setCheckIcon(item3);
@@ -59,13 +61,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPanelClosed(int featureId, Menu menu) {
-        Log.d("TAG", "onClosePanel");
+
         MenuItem item1 = menu.findItem(R.id.ab_item1);
         MenuItem item2 = menu.findItem(R.id.ab_item2);
         MenuItem item3 = menu.findItem(R.id.ab_item3);
 
+        /*save current state of menu items on shared preferences*/
         saveActionBarState(item1,item2, item3);
 
+        /*do the same as in OnCreateOptionsMenu*/
         itemSetEnabled(1, item1.isChecked());
         itemSetEnabled(2, item2.isChecked());
         itemSetEnabled(3, item3.isChecked());
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onPanelClosed(featureId, menu);
     }
 
+    /*make selected item checked and uncheck other*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    /*show settings menu*/
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -134,6 +140,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnItemMenu3 = (Button) findViewById(R.id.itemButton3_AM);
     }
 
+    /*each item on screen has 3 components: itemBar with item subject, itemText with text, and
+    * itemButton that calls cettings menu. This method set enabled all this components together,
+    * where 1 - item#1, 2 - item#2, 3 - item#3*/
     private void itemSetEnabled (int item, boolean enable) {
         switch (item) {
             case 1:
@@ -157,12 +166,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+    /*add check icon to actionBar menu items*/
     private void setCheckIcon (MenuItem item) {
 
         SpannableStringBuilder builder = new SpannableStringBuilder(getTitleForBuilder(item));
         boolean check = item.isChecked();
-        // replace "*" with icon
+        // replace first symbol of title with icon
         if (check) {
             builder.setSpan(new ImageSpan(this, R.drawable.ic_checked), 0, 1,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -174,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         item.setTitle(builder);
     }
 
+    /*create valid title for SpannableStringBuilder by adding additional symbol to start of the
+     * title.  */
     private String getTitleForBuilder (MenuItem item) {
         String title = String.valueOf(item.getTitle());
         if (title.charAt(0) == '*') return title;

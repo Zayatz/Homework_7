@@ -11,18 +11,29 @@
 
     <style name="itemStyle" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
         <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="itemStyle.itemStyleLand">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginLeft">0dp</item>
     </style>
 
     <style name="itemBarStyle" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/item_btn_height</item>
         <item name="android:background">@drawable/tv_item_bar_am</item>
-        <item name="android:textColor">@drawable/item_text_color</item>
+        <item name="android:textColor">@color/colorAccentLight</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/item_bar_text_size</item>
+        <item name="android:paddingTop">@dimen/item_bar_vertical_padding</item>
+        <item name="android:paddingLeft">@dimen/item_bar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/item_bar_horizontal_padding</item>
     </style>
 
     <style name="itemBtnStyle" parent="AppTheme">
@@ -33,9 +44,12 @@
 
     <style name="itemTextStyle" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/tv_item_text_am</item>
         <item name="android:textColor">@drawable/item_text_color</item>
+        <item name="android:paddingLeft">@dimen/item_bar_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/item_bar_horizontal_padding</item>
+        <item name="android:textSize">@dimen/item_text_text_size</item>
     </style>
 
 </resources>

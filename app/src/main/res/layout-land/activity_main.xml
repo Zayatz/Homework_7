@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zayatz.homework_7.MainActivity"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <RelativeLayout
-        style="@style/itemStyle">
+        style="@style/itemStyle.itemStyleLand">
         <TextView
             android:id="@+id/itemBar1_AM"
             style="@style/itemBarStyle"
@@ -26,7 +27,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        style="@style/itemStyle">
+        style="@style/itemStyle.itemStyleLand">
         <TextView
             android:id="@+id/itemBar2_AM"
             style="@style/itemBarStyle"
@@ -44,7 +45,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-    style="@style/itemStyle">
+        style="@style/itemStyle.itemStyleLand">
         <TextView
             android:id="@+id/itemBar3_AM"
             style="@style/itemBarStyle"

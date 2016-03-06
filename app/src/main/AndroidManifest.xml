@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ItemViewActivity"
+            android:label="@string/item_screen"
             android:parentActivityName="com.zayatz.homework_7.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

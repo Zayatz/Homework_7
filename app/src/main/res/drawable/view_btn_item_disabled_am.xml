@@ -7,7 +7,7 @@
                 />
             <corners android:topRightRadius="@dimen/item_corners_radius"
                 />
-            <stroke android:color="@color/colorPrimary"
+            <stroke android:color="@color/colorPrimaryLight"
                 android:width="@dimen/item_stroke_width"
                 />
         </shape>
