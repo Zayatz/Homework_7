@@ -4,17 +4,17 @@
     tools:context=".MainActivity" >
 
     <item android:id="@+id/popup_new_window"
-        android:title="new window"
+        android:title="@string/popup_new_window"
         android:orderInCategory="1"
         app:showAsAction="never"
         />
     <item android:id="@+id/popup_show_toast"
-        android:title="toast"
+        android:title="@string/popup_show_toast"
         android:orderInCategory="2"
         app:showAsAction="never"
         />
     <item android:id="@+id/popup_close"
-        android:title="close"
+        android:title="@string/popup_close"
         android:orderInCategory="3"
         app:showAsAction="never"
         />

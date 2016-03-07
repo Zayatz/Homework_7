@@ -19,4 +19,7 @@
     <string name="ab_item1">Item #1</string>
     <string name="ab_item2">Item #2</string>
     <string name="ab_item3">Item #3</string>
+    <string name="popup_new_window">Show in new window</string>
+    <string name="popup_show_toast">Show in Toast</string>
+    <string name="popup_close">Close app</string>
 </resources>
